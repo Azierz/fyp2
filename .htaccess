@@ -1,0 +1,10 @@
+RewriteEngine On
+#HTML1
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ $1\.html
+#PHP
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ $1\.php
+#RewriteCond %{REQUEST_METHOD} !POST [NC]
