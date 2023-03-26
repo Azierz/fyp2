@@ -1,7 +1,6 @@
 <?php
-session_start();
 $page_title = 'Login Form';
-include ('includes/header.html');
+include ('includes/theader.html');
 
 if (!empty($_SESSION['user_id']) || !empty($_SESSION['admin_id'])) {
 	echo '
@@ -20,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errors = array(); // Initialize error array.
 
 	// Validate the email address:
-	if (empty($_POST['username'])) {
-		$errors[] = 'You forgot to enter your username.';
+	if (empty($_POST['email'])) {
+		$errors[] = 'You forgot to enter your email.';
 	} else {
-		$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
+		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 	}
 
 	// Validate the password:
@@ -36,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($errors)) { // If everything's OK.
 
 		// Query for admin
-		$q = "SELECT admin_id, username FROM admin WHERE username='$un' AND password=SHA1('$p')";		
+		$q = "SELECT admin_id, email FROM admin WHERE email='$e' AND password=SHA1('$p')";		
 		$r = @mysqli_query ($dbc, $q); // Run the query.
 
 		// Query for user
-		$q1 = "SELECT user_id, username, profile_pic FROM users WHERE username='$un' AND password=SHA1('$p')";		
+		$q1 = "SELECT user_id, email, profile_pic FROM users WHERE email='$e' AND password=SHA1('$p')";		
 		$r1 = @mysqli_query ($dbc, $q1); // Run the query.
 		
 		// Check the result:
@@ -52,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Set the session data:
 			
 			$_SESSION['admin_id'] = $row['admin_id'];
-			$_SESSION['username'] = $un;
+			$_SESSION['email'] = $e;
 			
 			// Redirect user
 			// header("Location:profile.php");
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Set the session data:
 			
 			$_SESSION['user_id'] = $row['user_id'];
-			$_SESSION['username'] = $un;
+			$_SESSION['email'] = $e;
 			$_SESSION['profile_pic'] = $row['profile_pic'];
 			
 			// Redirect user
@@ -74,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo '<script>setTimeout(function(){location.href="profile"},0);</script>';
 
 		} else { // Not a match!
-			$errors[] = 'The username and password entered do not match those on file.';
+			$errors[] = 'The email and password entered do not match those on file.';
 		}
 	} // End of empty($errors) IF.
 
@@ -97,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <form action="login.php" method="post">
 	<table style="font-size: 100%">
 		<tr>
-			<td><p>Username</p></td>
-			<td><p><input type="text" name="username" size="20"/></p></td>
+			<td><p>Email</p></td>
+			<td><p><input type="text" name="email" size="20"/></p></td>
 		</tr>
 		
 		<tr>

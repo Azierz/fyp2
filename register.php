@@ -1,6 +1,6 @@
 <?php 
 $page_title = 'Registration Form';
-include ('includes/header.html');
+include ('includes/theader.html');
 
 if (!empty($_SESSION['user_id']) || !empty($_SESSION['admin_id'])) {
 	echo '
@@ -21,20 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else {
 		$fn = trim($_POST['fullname']);
 	}
-	
-	// Check for username:
-	if (empty($_POST['username'])) {
-		$errors[] = 'You forgot to enter your username.';
-	} else {
-		$un = trim($_POST['username']);
-	}
-	
-	// Check for an email address:
-	if (empty($_POST['email'])) {
-		$errors[] = 'You forgot to enter your email address.';
-	} else {
-		$e = trim($_POST['email']);
-	}
 
 	// Check the phone number:
 	if (empty($_POST['phone_no'])) {
@@ -43,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else {
 		$pn = trim($_POST['phone_no']);
 	}
-
-	// Check for platform select:
-	if ($_POST['platform'] == "None"){
-		$errors[] = 'You forgot to select your platform.';
-	} else {
-		$plt = trim($_POST['platform']);
+	
+	// Check for an email address:
+		if (empty($_POST['email'])) {
+			$errors[] = 'You forgot to enter your email address.';
+		} else {
+			$e = trim($_POST['email']);
 	}
 
 	// Check for a password and match against the confirmed password:
@@ -86,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$dp = "includes/defaultpic.png";
 
 			// Make the query:
-			$q = "INSERT INTO users (fullname, username, email, phoneNo, platform, password, registration_date, profile_pic) VALUES ('$fn', '$un', '$e', '$pn', '$plt', SHA1('$p'), NOW(), '$dp' )";	
+			$q = "INSERT INTO users (fullname, phoneNo, email, password, registration_date, profile_pic) VALUES ('$fn', '$pn', '$e', SHA1('$p'), NOW(), '$dp' )";	
 			$r = mysqli_query ($dbc, $q); // Run the query.
 			if ($r) { // If it ran OK.
 
@@ -101,7 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				// Public message:
 				echo '<h1>System Error</h1>
-				<p id="errors">You could not be registered due to a system error. We apologize for any inconvenience.</p>';
+				<p id="errors">You could not be registered due to a system error. We apologize for any inconvenience.</p>
+				<br>
+				<a href="home"><button align="right">Back to Home</button></a>
+				<br><br><br>';
 
 				// Debugging message:
 				echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
@@ -135,36 +124,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<table style="font-size: 100%">
 		<tr>
 			<td><p>Full Name</p></td>
-			<td><p><input type="text" name="fullname" size="30" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
-		</tr>
-		<tr>
-			<td><p>Username</p></td>
-			<td><p><input type="text" name="username" size="30" maxlength="20" value="<?php if (isset($_POST['username'])) echo $_POST['username']; ?>"/></p></td>
-		</tr>
-		<tr>
-			<td><p>Email Address</p></td>
-			<td><p><input type="text" name="email" size="30" maxlength="60" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"/></p></td>
+			<td><p><input type="text" name="fullname" placeholder="First & Last Name" size="30" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
 		</tr>
 		<tr>
 			<td><p>Phone Number</p></td>
-			<td><p><input type="text" name="phone_no" size="25" maxlength="40" value= "<?php if (isset($_POST['phone_no'])) echo $_POST['phone_no']; ?>"/></p></td>
+			<td><p><input type="text" name="phone_no" placeholder="Phone Number" size="25" maxlength="40" value= "<?php if (isset($_POST['phone_no'])) echo $_POST['phone_no']; ?>"/></p></td>
 		</tr>
 		<tr>
-			<td><p>Platform</p></td>
-			<td><p><select name=platform>
-					<option selected value="None">Select your platform...</option>
-					<option value="Playstation">Playstation</option>
-					<option value="Xbox">Xbox</option>
-					<option value="PC">PC</option>
-				</select></p></td>
+			<td><p>Email Address</p></td>
+			<td><p><input type="text" name="email" placeholder="Email Address" size="30" maxlength="60" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"/></p></td>
 		</tr>
 		<tr>
 			<td><p>Password</p></td>
-			<td><p><input type="password" name="pass1" size="15" maxlength="20" value=""/></p></td>
+			<td><p><input type="password" name="pass1" placeholder="Password" size="15" maxlength="20" value=""/></p></td>
 		</tr>
 		<tr>
 			<td><p>Confirm Password</p></td>
-			<td><p><input type="password" name="pass2" size="15" maxlength="20" value=""/></p></td>
+			<td><p><input type="password" name="pass2" placeholder="Confirm Password" size="15" maxlength="20" value=""/></p></td>
 		</tr>
 	</table>
 	<p align="right"><input type="submit" name="submit" value="Register" /></p>
