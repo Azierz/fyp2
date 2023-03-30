@@ -117,33 +117,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } // End of the main Submit conditional.
 ?>
-
-<h1>SIGN UP FORM</h1>
-<form action="register.php" method="post">
-	<p>* Please complete the form below.</p>
-	<table style="font-size: 100%">
-		<tr>
-			<td><p>Full Name</p></td>
-			<td><p><input type="text" name="fullname" placeholder="First & Last Name" size="30" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
-		</tr>
-		<tr>
-			<td><p>Phone Number</p></td>
-			<td><p><input type="text" name="phone_no" placeholder="Phone Number" size="25" maxlength="40" value= "<?php if (isset($_POST['phone_no'])) echo $_POST['phone_no']; ?>"/></p></td>
-		</tr>
-		<tr>
-			<td><p>Email Address</p></td>
-			<td><p><input type="text" name="email" placeholder="Email Address" size="30" maxlength="60" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"/></p></td>
-		</tr>
-		<tr>
-			<td><p>Password</p></td>
-			<td><p><input type="password" name="pass1" placeholder="Password" size="15" maxlength="20" value=""/></p></td>
-		</tr>
-		<tr>
-			<td><p>Confirm Password</p></td>
-			<td><p><input type="password" name="pass2" placeholder="Confirm Password" size="15" maxlength="20" value=""/></p></td>
-		</tr>
-	</table>
-	<p align="right"><input type="submit" name="submit" value="Register" /></p>
-</form>
+<div class="flex-container">
+	<h1 align="center">REGISTER</h1>
+	<form action="register.php" method="post" >
+		<p>* Please complete the form below.</p>
+		<table style="font-size: 100%">
+			<tr>
+				<td><p><input type="text" name="fullname" placeholder="First Name" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
+				<td><p><input type="text" name="fullname" placeholder="Last Name" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><p><input type="text" name="phone_no" placeholder="Phone Number" maxlength="40" value= "<?php if (isset($_POST['phone_no'])) echo $_POST['phone_no']; ?>"/></p></td>
+			</tr>
+			<tr>
+				
+				<td colspan="2"><p><input type="text" name="email" placeholder="Email Address" maxlength="60" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"/></p></td>
+			</tr>
+			<tr>
+				
+				<td colspan="2"><p><input type="password" name="pass1" placeholder="Password" maxlength="20" value=""/></p></td>
+			</tr>
+			<tr>
+				
+				<td colspan="2"><p><input type="password" name="pass2" placeholder="Confirm Password" maxlength="20" value=""/></p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="smolink"><b><a href="login">Login Here</a></b></span></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input class="form-submit-button" type="submit" name="submit" value="Register" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
 
 <?php include ('includes/footer.html'); ?>

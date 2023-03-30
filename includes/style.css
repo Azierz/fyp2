@@ -7,7 +7,6 @@
 	scroll-behavior: smooth;
 }
 
-
 /* general */
 a {
 	color:#777;
@@ -42,7 +41,7 @@ body {
 	color: white;
 }
 
-#myVideo {
+/* #myVideo {
 	position: fixed;
 	right: 0;
 	bottom: 0;
@@ -54,7 +53,7 @@ body {
 	z-index: -99;
 	filter:blur(5px);
 	transform: translateX(0%) translateY(0%);
-}
+} */
 
 #trans {
 	box-sizing: content-box;
@@ -109,10 +108,10 @@ body {
 	margin-bottom:-13px;
 }
 /* vheader.php */
-span.title { 
+/* span.title { 
 	float: right;
 	padding: 10px 120px 0 0;
-}
+} */
 
 
 /* NAVIGATION */
@@ -130,7 +129,7 @@ span.title {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 14px;
-	border-radius: 25px;
+	/* border-radius: 25px; */
 }
 #topnav a:hover {
 	background-color: #ddd;
@@ -141,22 +140,30 @@ span.title {
 	color: white;
 }
 
+/* prevention system toggle button */
 #topnav .topnav-centered button {
 	/* style */
 	background-color: #ff0000;
 	color: black;
 	padding: 10px 20px;
-	cursor: pointer;
-	border-radius: 16px;
+	border-radius: 5px;
 	/* position */
 	float: none;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-  }
+}
+#topnav .topnav-centered button:hover {
+	/* style */
+	background-color: #00ff0d;
+	color: black;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+}
 
-#topnav img {
+/* #topnav img {
 	float: left;
 	padding: auto;
 	margin-left: 10px;
@@ -164,8 +171,8 @@ span.title {
 	border-radius: 25px;
 	border: 1px solid white;
 	box-shadow: 0 0 15px pink;	
-}
-#topnav .time {
+} */
+/* #topnav .time {
 	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -178,7 +185,7 @@ span.title {
 	border-radius: 25px;
 	border: 1px solid white;
 	box-shadow: 0 0 5px yellow;
-}
+} */
 #topnav ul {
     list-style-type: none;
     margin: 0;
@@ -208,24 +215,75 @@ span.title {
 /* CONTENT */
 #content {
 	height:auto;
-	margin: 100 auto;
-	padding:0 15 20px;
-	width:745px;
-	background: rgba(56, 44, 143, 0.9);
-	border-radius: 25px;
+	margin: 5% auto;
+	padding:0 15 20;
+	width: fit-content;
+	background: rgba(128, 126, 143, 0.9);
+	/* background: rgba(56, 44, 143, 0.9); - original*/
+	border-radius: 1%;
+	border: 1em #fc0909;
+	/* flex */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	
-
 }
+#content .flex-container {
+	display: flex;
+	height: auto;
+	justify-content: center;
+	align-items: inherit; 
+	flex-direction: column;
+}
+/* BROWSE - START */
+#content .flex-container img{
+	width: 150;
+	height: 150;
+}
+#content .flex-con {
+	display: flex;
+}
+#content .browsebold {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+/* BROWSE - END */
 #content h1 {
 	border-bottom:1px dashed #999;
 	font-size:1.8em;
 	padding:20px 0 0;
 }
 #content p {
-	padding:20px 20px 0;
+	padding:2em 0 0;
 }
 #content table {
-	padding:20px 20px 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content input {
+	padding: 0.7em;
+	/* margin: 5px; */
+	/* border-radius: 25px;
+	border: 1px solid white;
+	box-shadow: 0 0 5px yellow; */
+	width: 100%;
+}
+
+.form-submit-button {
+	background: #000000;
+	color: white;
+	border-style: outset;
+	border-color: #000000;
+	height: 50px;
+	width: 85%;
+	font: bold 15px arial,sans-serif;
+}
+.form-submit-button:hover {
+	background: #d0d0d0;
+	color: #000000;
+	border: 1px solid #000000;
+	text-shadow: none;
 }
 
 /* content for index.php */
@@ -257,8 +315,7 @@ span.title {
 #icontent .flex-container {
     display: flex;
     justify-content: space-around;
-    /*background-color: DodgerBlue;*/
-    
+    /*background-color: DodgerBlue;*/  
 }
 
 /*content for profile.php (ADMIN)*/
@@ -440,7 +497,25 @@ span.third {
   from {right: -1136px;}
   to {right: 290px;}
 }
+span.smolink {
+	float: right;
+	padding: 1em 0 1em 0;
+}
+span.smolink img{
+	border-radius: 25px;
+	border: 1px solid white;
+	box-shadow: 0 0 20px yellow;
+	margin-top: 75px;
+	margin-left: 45px;
+}
 
+span.smolink a {
+	color: white;
+}
+span.smolink a:hover {
+	color: yellow;
+	text-shadow: 0 0 10px black, 0 0 10px black;
+}
 
 /* profile.php */
 #table_td { 
@@ -448,7 +523,7 @@ span.third {
 	background-color: #1F00FF;
 	border-radius: 25px;
 }
-span.profile {
+/* span.profile {
 	float: right;
 	padding: 10px 65px 0 0;
 }
@@ -470,22 +545,22 @@ figcaption a {
 figcaption a:hover {
 	color: yellow;
 	text-shadow: 0 0 10px black, 0 0 10px black;
-}
+} */
 
 
 /* upload.php */
-a button {
+/* a button {
 	float: right;
 	padding: 5px;
 	margin-right: 20px;
 	border-radius: 5px;
 	color: #008040;
 	font-weight: bold;
-}
+} */
 
 
 /* static_animate.php */
-.staticgif{
+/* .staticgif{
 	position: fixed;
 	bottom: 48px;
 	left: 0;
@@ -493,7 +568,7 @@ a button {
 	width: 8%;  
 	float:right; 
 	z-index: 3;
-}
+} */
 
 /* font-family: Copperplate, Papyrus, fantasy;
 
