@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-
+<div id=starthere>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -7,22 +7,82 @@
     <title><?php echo $page_title; ?></title>
     <meta name='viewport' content='width=device-width, initial-scale=1'> <!-- set the page dimensions and scalling -->
     <link rel='stylesheet' type='text/css' media='screen' href='includes/style.css'>
-    <!-- <script src='main.js'></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        function takeSearch() {
+            var newsearch = $("#search").val();
+            $.ajax({
+                url: 'browse',
+                type: 'POST',
+                data: {value: newsearch },
+                success: function (result) {
+                    $("#starthere").replaceWith(result);
+                }
+            });
+        }
+    </script>
+
 
 </head>
 <body id="bg">
     <div id="topnav">
         <a href="index"><b>AETUZI PVSY</b></a>
+        <a href="help">Help</a>
+
+        <!-- search bar -->
+        <div class="search-container" style="float: left;">
+            <!-- <form action="browse" method="GET" role="search"> -->
+                <input type="text" placeholder="Search..." id="search" size="25">
+                <button type="button" onclick="takeSearch()" id="btnTake"><i class="fa fa-search"></i></button>
+            <!-- </form> -->
+        </div>
+        
         <div class="topnav-centered">
             <button onclick="window.location.href='help';">TOGGLE PREVENTION: OFF</button>
         </div>
-        <ul>
-            <li><a href="Home">Home</a></li>
-            <li><a href="browse">Browse</a></li>
-            <li><a href="help">Help</a></li>
-            <li><a href="login">Login</a></li>
-            <!-- <li><a href="register">Sign Up</a></li> -->
-        </ul>
+            
+
+        <?php 
+
+        // Create a login/logout link:
+		
+
+		if (isset($_SESSION['admin_id'])) {
+			echo '
+            <ul>
+                <!-- <li><img src="'.$_SESSION['profile_pic'].'" style="width: 50px; height: 50px;"></li> -->
+                <li><a href="Home">Home</a></li>
+                <li><a href="browse">Browse</a></li>
+                <li><a href="profile">Registered Participants</a></li>
+                <li><a href="logout">Logout</a></li>
+                <!-- <li><a href="register">Sign Up</a></li> -->
+            </ul>';
+
+		} elseif (!empty($_SESSION['user_id'])) {
+			echo '
+			<ul>
+                <!-- <li><img src="'.$_SESSION['profile_pic'].'" style="width: 50px; height: 50px;"></li> -->
+                <li><a href="Home">Home</a></li>
+                <li><a href="browse">Browse</a></li>
+                <li><a href="profile">User Profile</a></li>
+                <li><a href="logout">Logout</a></li>
+                <!-- <li><a href="register">Sign Up</a></li> -->
+            </ul>';
+
+		} else {
+			echo '
+			<ul>
+                <li><a href="Home">Home</a></li>
+                <li><a href="browse">Browse</a></li>
+                <li><a href="login">Login</a></li>
+                <!-- <li><a href="register">Sign Up</a></li> -->
+            </ul>';
+		}
+        ?>
+        
+        
     </div> <!--Close div "topnav"-->
     
     <div id="content">

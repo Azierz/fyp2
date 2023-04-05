@@ -15,11 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$errors = array(); // Initialize an error array.
 
-	// Check for full name:
-	if (empty($_POST['fullname'])) {
+	// Check for first name:
+	if (empty($_POST['fname'])) {
 		$errors[] = 'You forgot to enter your full name.';
 	} else {
-		$fn = trim($_POST['fullname']);
+		$fn = trim($_POST['fname']);
+	}
+
+	// Check for last name:
+	if (empty($_POST['lname'])) {
+		$errors[] = 'You forgot to enter your full name.';
+	} else {
+		$ln = trim($_POST['lname']);
 	}
 
 	// Check the phone number:
@@ -52,19 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		require ('mysqli_connect.php'); // Connect to the db.
 
-		//  Test for unique username and email address
-		$q = "SELECT username FROM users WHERE username='$un'";
+		//  Test for unique email address
+		$q = "SELECT email FROM users WHERE email='$e'";
 		$r = @mysqli_query($dbc, $q);
 
-		$q1 = "SELECT email FROM users WHERE email='$e'";
-		$r1 = @mysqli_query($dbc, $q1);
-
-		if(mysqli_num_rows($r) > 0){ // Check for unique username
-			$errors[] = "Username has been taken.";
-			if (mysqli_num_rows($r1) > 0) { // Check for unique email address
-				$errors[] = "Email Address already exists.";
-			}
-		} elseif (mysqli_num_rows($r1) > 0) { // Check for unique email address
+		if(mysqli_num_rows($r) > 0){ // Check for unique email address
 			$errors[] = "Email Address already exists.";
 		} else { // Register the user in the database...
 
@@ -72,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$dp = "includes/defaultpic.png";
 
 			// Make the query:
-			$q = "INSERT INTO users (fullname, phoneNo, email, password, registration_date, profile_pic) VALUES ('$fn', '$pn', '$e', SHA1('$p'), NOW(), '$dp' )";	
+			$q = "INSERT INTO users (first_name, last_name, phone_no, email, password, registration_date, profile_pic) VALUES ('$fn', '$ln', '$pn', '$e', SHA1('$p'), NOW(), '$dp' )";	
 			$r = mysqli_query ($dbc, $q); // Run the query.
 			if ($r) { // If it ran OK.
 
@@ -123,8 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<p>* Please complete the form below.</p>
 		<table style="font-size: 100%">
 			<tr>
-				<td><p><input type="text" name="fullname" placeholder="First Name" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
-				<td><p><input type="text" name="fullname" placeholder="Last Name" maxlength="30" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname']; ?>"/></p></td>
+				<td><p><input type="text" name="fname" placeholder="First Name" maxlength="30" value="<?php if (isset($_POST['fname'])) echo $_POST['fname']; ?>"/></p></td>
+				<td><p><input type="text" name="lname" placeholder="Last Name" maxlength="30" value="<?php if (isset($_POST['lname'])) echo $_POST['lname']; ?>"/></p></td>
 			</tr>
 			<tr>
 				<td colspan="2"><p><input type="text" name="phone_no" placeholder="Phone Number" maxlength="40" value= "<?php if (isset($_POST['phone_no'])) echo $_POST['phone_no']; ?>"/></p></td>

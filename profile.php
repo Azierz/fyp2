@@ -1,22 +1,23 @@
 <?php 
+include ('includes/theader.html');
+require ('mysqli_connect.php');
 
-session_start();
 if (!empty($_SESSION['user_id'])) { //page title
 	$page_title = 'User Profile';
 } else {
 	$page_title = 'Registered Participants';
 }
 
-include ('includes/vheader.html');
-require ('mysqli_connect.php');
+
 
 // USER VIEW
 if (!empty($_SESSION['user_id'])) {
 
-	echo '<div id="content">';
+	echo '
+		<div class="flex-con">';
 
 		$user_id=$_SESSION['user_id'];
-		echo '<h1>WELCOME BACK, '. $_SESSION['username'] .' !</h1>';
+		echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
 		
 		$q = "SELECT *, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr FROM users WHERE user_id='$user_id' ORDER BY user_id";		
 		$r = @mysqli_query ($dbc, $q);
@@ -33,17 +34,24 @@ if (!empty($_SESSION['user_id'])) {
 
 			echo '<table align="center" cellspacing="10" cellpadding="10" width=40%>
 				<tr>
-					<td><b>Full Name</b></td>
+					<td><b>Description / About Me</b></td>
 				</tr>
 				<tr>
-					<td id = "table_td">' . $row['fullname'] . '</td>
+					<td id = "table_td">' . $row['about_me'] . '</td>
+				</tr>
+			<div class="flex-container">
+				<tr>
+					<td><b>First Name</b></td>
+				</tr>
+				<tr>
+					<td id = "table_td">' . $row['first_name'] . '</td>
 				</tr>
 
 				<tr>
-					<td><b>Username</b></td>
+					<td><b>Last Name</b></td>
 				</tr>
 				<tr>
-					<td id = "table_td">' . $row['username'] . '</td>
+					<td id = "table_td">' . $row['last_name'] . '</td>
 				</tr>
 
 				<tr>
@@ -57,14 +65,7 @@ if (!empty($_SESSION['user_id'])) {
 					<td><b>Phone Number (+60)</b></td>
 				</tr>
 				<tr>
-					<td id = "table_td">' . $row['phoneNo'] . '</td>
-				</tr>
-
-				<tr>
-					<td><b>Platform</b></td>
-				</tr>
-				<tr>
-					<td id = "table_td">' . $row['platform'] . '</td>
+					<td id = "table_td">' . $row['phone_no'] . '</td>
 				</tr>
 
 				<tr>
@@ -84,7 +85,7 @@ if (!empty($_SESSION['user_id'])) {
 	} else { // If no records were returned.
 		echo '<p class="error">There are currently no registered participant.</p>';
 	}
-
+	echo '</div>';
 // ADMIN VIEW
 } elseif (!empty($_SESSION['admin_id'])) {
 
@@ -146,6 +147,6 @@ if (!empty($_SESSION['user_id'])) {
 
 mysqli_close($dbc); // Close the database connection.
 
-include ('static_animate.php');
+
 include ('includes/footer.html');
 ?>

@@ -9,7 +9,8 @@
 
 /* general */
 a {
-	color:#777;
+	/* color:#777; */
+	color:#ffffff;
 	text-decoration:none;
 }
 
@@ -212,6 +213,32 @@ body {
 			 background-color: #111;
 		 } */
 
+/* Search Bar - Navigation */
+#topnav .search-container {
+	float: left;
+}
+#topnav input[type=text] {
+	padding: 6px;
+	margin-top: 8px;
+	font-size: 17px;
+	border: none;
+}
+#topnav .search-container button {
+	float: right;
+	padding: 6px 10px;
+	margin-top: 8px;
+	margin-right: 16px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+}
+#topnav .search-container button:hover {
+	background: #ccc;
+}
+
+
+
 /* CONTENT */
 #content {
 	height:auto;
@@ -237,8 +264,9 @@ body {
 }
 /* BROWSE - START */
 #content .flex-container img{
-	width: 150;
-	height: 150;
+	max-width: 150;
+	width: 100%;
+	height: auto;
 }
 #content .flex-con {
 	display: flex;

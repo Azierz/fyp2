@@ -34,30 +34,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if (empty($errors)) { // If everything's OK.
 
-		// Query for admin
-		$q = "SELECT admin_id, email FROM admin WHERE email='$e' AND password=SHA1('$p')";		
-		$r = @mysqli_query ($dbc, $q); // Run the query.
+		// // Query for admin
+		// $q = "SELECT admin_id, email FROM admin WHERE email='$e' AND password=SHA1('$p')";		
+		// $r = @mysqli_query ($dbc, $q); // Run the query.
 
 		// Query for user
-		$q1 = "SELECT user_id, email, profile_pic FROM users WHERE email='$e' AND password=SHA1('$p')";		
+		$q1 = "SELECT user_id, email, profile_pic, first_name, last_name FROM users WHERE email='$e' AND password=SHA1('$p')";		
 		$r1 = @mysqli_query ($dbc, $q1); // Run the query.
 		
-		// Check the result:
-		if (mysqli_num_rows($r) == 1) {
+		// // Check the result:
+		// if (mysqli_num_rows($r) == 1) {
 
-			// Fetch the record:
-			$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+		// 	// Fetch the record:
+		// 	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
-			// Set the session data:
+		// 	// Set the session data:
 			
-			$_SESSION['admin_id'] = $row['admin_id'];
-			$_SESSION['email'] = $e;
+		// 	$_SESSION['admin_id'] = $row['admin_id'];
+		// 	$_SESSION['email'] = $e;
 			
-			// Redirect user
-			// header("Location:profile.php");
-			echo '<script>setTimeout(function(){location.href="profile"},0);</script>';
+		// 	// Redirect user
+		// 	// header("Location:profile.php");
+		// 	echo '<script>setTimeout(function(){location.href="profile"},0);</script>';
 			
-		} elseif (mysqli_num_rows($r1) == 1) {
+		// } 
+		if (mysqli_num_rows($r1) == 1) {
 
 			// Fetch the record:
 			$row = mysqli_fetch_array($r1, MYSQLI_ASSOC);
@@ -67,6 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_SESSION['user_id'] = $row['user_id'];
 			$_SESSION['email'] = $e;
 			$_SESSION['profile_pic'] = $row['profile_pic'];
+			$_SESSION['fname'] = $row['first_name'];
+			$_SESSION['lname'] = $row['last_name'];
+
 			
 			// Redirect user
 			// header("Location:profile.php");
