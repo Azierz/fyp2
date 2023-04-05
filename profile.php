@@ -32,6 +32,9 @@ if (!empty($_SESSION['user_id'])) {
 
 			echo "<p>Here's your profile information:</p>";
 
+			// Change Profile Picture
+			echo '<span class="profile"><img src="'.$_SESSION['profile_pic'].'" width=auto height=43%><figcaption align=center><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>';
+			echo '</table>';
 			echo '<table align="center" cellspacing="10" cellpadding="10" width=40%>
 				<tr>
 					<td><b>Description / About Me</b></td>
@@ -39,46 +42,42 @@ if (!empty($_SESSION['user_id'])) {
 				<tr>
 					<td id = "table_td">' . $row['about_me'] . '</td>
 				</tr>
+				</table>
+			<table align="center" cellspacing="10" cellpadding="10" width=40%>
 			<div class="flex-container">
 				<tr>
 					<td><b>First Name</b></td>
-				</tr>
-				<tr>
-					<td id = "table_td">' . $row['first_name'] . '</td>
-				</tr>
-
-				<tr>
 					<td><b>Last Name</b></td>
 				</tr>
 				<tr>
+					<td id = "table_td">' . $row['first_name'] . '</td>
 					<td id = "table_td">' . $row['last_name'] . '</td>
 				</tr>
 
 				<tr>
-					<td><b>Email</b></td>
+					<td colspan=2><b>Email</b></td>
 				</tr>
 				<tr>
-					<td id = "table_td">' . $row['email'] . '</td>
-				</tr>
-
-				<tr>
-					<td><b>Phone Number (+60)</b></td>
-				</tr>
-				<tr>
-					<td id = "table_td">' . $row['phone_no'] . '</td>
+					<td id = "table_td" colspan=2>' . $row['email'] . '</td>
 				</tr>
 
 				<tr>
-					<td><b>Registered Date</b></td>
+					<td colspan=2><b>Phone Number (+60)</b></td>
 				</tr>
 				<tr>
-					<td id = "table_td">' . $row['dr'] . '</td>
+					<td id = "table_td" colspan=2>' . $row['phone_no'] . '</td>
+				</tr>
+
+				<tr>
+					<td colspan=2><b>Registered Date</b></td>
+				</tr>
+				<tr>
+					<td id = "table_td" colspan=2>' . $row['dr'] . '</td>
 				</tr>
 				';
 
-				// Change Profile Picture
-				echo '<span class="profile"><img src="'.$_SESSION['profile_pic'].'" width=auto height=43%><figcaption align=center><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>';
-			echo '</table>';
+				echo '</table>';
+
 
 			mysqli_free_result ($r);	
 
