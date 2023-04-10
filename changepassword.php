@@ -9,10 +9,10 @@ $page_title = 'Change Password';
 if (!empty($_SESSION['user_id'])) {
 
 	echo '
-		<div class="flex-con">';
+		<div class="flex-con"><div class="flex-container">';
 
 		$user_id=$_SESSION['user_id'];
-		echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
+		// echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
 		
 		$q = "SELECT *, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr FROM users WHERE user_id='$user_id' ORDER BY user_id";		
 		$r = @mysqli_query ($dbc, $q);
@@ -28,18 +28,22 @@ if (!empty($_SESSION['user_id'])) {
 			echo "<p>Here's your profile information:</p>";
 
 			// Change Profile Picture
-			echo '<span class="profile"><img src="'.$_SESSION['profile_pic'].'" width=auto height=43%><figcaption align=center><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>';
-			echo '</table>';
-			echo '<table align="center" cellspacing="10" cellpadding="10" width=40%>
+			echo '
+			<span class="profile"><img src="'.$_SESSION['profile_pic'].'" style="max-width: 150; width: 100%; height: auto; justify-content:center;">
+			<figcaption align=left><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>
+			';
+			
+			echo '
+			<table align="center" cellspacing="10" cellpadding="10" width=20%>
 				<tr>
 					<td><b>Description / About Me</b></td>
 				</tr>
 				<tr>
 					<td id = "table_td">' . $row['about_me'] . '</td>
 				</tr>
-				</table>
-			<table align="center" cellspacing="10" cellpadding="10" width=40%>
-			<div class="flex-container">
+			</table>
+		</div><div class="flex-container">
+			<table align="center" cellspacing="10" cellpadding="10" width=60%>
 				<tr>
 					<td><b>Current Password</b></td>
 				</tr>
@@ -62,7 +66,7 @@ if (!empty($_SESSION['user_id'])) {
 				</tr>
 				';
 
-				echo '</table>';
+			echo '</table></div>';
 
 
 			mysqli_free_result ($r);	

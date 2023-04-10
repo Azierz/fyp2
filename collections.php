@@ -12,7 +12,7 @@ require ('mysqli_connect.php');
 
 
 echo '
-	<div class="flex-con">';
+	<div class="flex-con"><div class="flex-container">';
 
 	// $user_id=$_SESSION['user_id'];
 	// echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
@@ -29,23 +29,38 @@ echo '
 		$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
 		// echo "<p>Here's your profile information:</p>";
-		echo '<h1>'.$row['game_name'].'&emsp;</h1>';
+		echo '<h1>'.$row['game_name'].'</h1>';
 		// Change Profile Picture
-		echo '<span class="profile"><img src="'.$_SESSION['profile_pic'].'" width=auto height=43%><figcaption align=center><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>';
+		echo '
+		<img src="'. $row['game_pic'] .'" style="max-width:400; width: 100%; height: auto;">';
 
-		echo '<table align="center" cellspacing="10" cellpadding="10" width=40%>
+		echo '
+		<table align="center" cellspacing="10" cellpadding="10" width=100%>
 			<tr>
-				<td><b>Basic Info</b></td>
+				<td colspan="2" align="center"><b>Basic Info</b></td>
 			</tr>
 			<tr>
+				<td><b>Developer</b></td>
 				<td id = "table_td">' . $row['developer'] . '</td>
+			</tr>
+			<tr>
+				<td><b>Publisher</b></td>
 				<td id = "table_td">' . $row['publisher'] . '</td>
+			</tr>
+				<td><b>Platform</b></td>
 				<td id = "table_td">' . $row['platform'] . '</td>
+			</tr>
+				
+			<tr>
+				<td><b>Genre</b></td>
 				<td id = "table_td">' . $row['genre'] . '</td>
 			</tr>
-			</table>
-			<table align="center" cellspacing="10" cellpadding="10" width=40%>
-		<div class="flex-container">
+		</table>
+	</div><div class="flex-container">
+		<table align="center" cellspacing="10" cellpadding="10" width=60%>
+			<tr>
+				<td><b>Release Info</b></td>
+			</tr>
 			<tr>
 				<td><b>Version / Re-Release</b></td>
 				<td><b>Order in Series</b></td>
@@ -54,8 +69,10 @@ echo '
 				<td id = "table_td">' . $row['release_date'] . '</td>
 				<td id = "table_td">' . $row['series_order'] . '</td>
 			</tr>
-
-			
+			<tr>
+				<td><b>Original Release</b></td>
+				<td><b>Re-Release</b></td>
+			</tr>
 			<tr>
 				<td><b>&emsp;</b></td>
 			</tr>
@@ -76,7 +93,7 @@ echo '
 			';
 
 			
-		echo '</table>';
+		echo '</table></div>';
 
 		mysqli_free_result ($r);	
 

@@ -19,7 +19,7 @@ include ('includes/header.html');
 	<div style="text-align:center;" id="resultsection"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<!-- <script>
 retreiveResults();
 var userName;
 function takeQuiz(){
@@ -54,6 +54,6 @@ function retreiveResults(){
 		}
 	});
 }
-</script>
+</script> -->
 </body>
 </html>

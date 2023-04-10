@@ -264,7 +264,7 @@ body {
 }
 /* BROWSE - START */
 #content .flex-container img{
-	max-width: 150;
+	max-width: 300;
 	width: 100%;
 	height: auto;
 }

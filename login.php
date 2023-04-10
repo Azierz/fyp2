@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$q1 = "SELECT user_id, email, profile_pic, first_name, last_name FROM users WHERE email='$e' AND password=SHA1('$p')";		
 		$r1 = @mysqli_query ($dbc, $q1); // Run the query.
 		
-		// // Check the result:
+		// Check the result:
 		// if (mysqli_num_rows($r) == 1) {
 
 		// 	// Fetch the record:

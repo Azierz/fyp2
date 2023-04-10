@@ -4,7 +4,8 @@ include ('includes/header.html');
 
 
 // Display the form:?>
-<div class="flex-container" style="flex-wrap: wrap;">
+<div class="flex-container" style="flex-wrap: wrap; width: 500px;">
+<!-- <div class="flex-con" style="flex-wrap: wrap; width: 100vh; justify-content: center; text-align:center;"> for iheader+ifooter -->
 <div>
     <h1>READING HUB</h1>	
     <br>
@@ -68,4 +69,4 @@ include ('includes/header.html');
             <br>
     </div>
 </div>
-<?php include ('includes/footer.html'); ?>
+<?php include ('includes/ifooter.html'); ?>

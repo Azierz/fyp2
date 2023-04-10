@@ -14,7 +14,7 @@ if (!empty($_SESSION['user_id'])) { //page title
 if (!empty($_SESSION['user_id'])) {
 
 	echo '
-		<div class="flex-con">';
+		<div class="flex-con"><div class="flex-container">';
 
 		$user_id=$_SESSION['user_id'];
 		echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
@@ -33,9 +33,13 @@ if (!empty($_SESSION['user_id'])) {
 			echo "<p>Here's your profile information:</p>";
 
 			// Change Profile Picture
-			echo '<span class="profile"><img src="'.$_SESSION['profile_pic'].'" width=auto height=43%><figcaption align=center><b><a href="upload">CHANGE PROFILE PHOTO</a></b></figcaption></span>';
-			echo '</table>';
-			echo '<table align="center" cellspacing="10" cellpadding="10" width=40%>
+			echo '
+			<span class="profile"><img src="'.$_SESSION['profile_pic'].'" style="max-width: 200; width: 100%; height: auto; justify-content:center;">
+			<figcaption align=center><b><a href="changepassword">CHANGE PROFILE PHOTO</a></b></figcaption></span>
+			';
+			
+			echo '
+			<table align="center" cellspacing="10" cellpadding="10" width=40%>
 				<tr>
 					<td><b>Description / About Me</b></td>
 				</tr>
@@ -43,8 +47,8 @@ if (!empty($_SESSION['user_id'])) {
 					<td id = "table_td">' . $row['about_me'] . '</td>
 				</tr>
 				</table>
+		</div><div class="flex-container">
 			<table align="center" cellspacing="10" cellpadding="10" width=40%>
-			<div class="flex-container">
 				<tr>
 					<td><b>First Name</b></td>
 					<td><b>Last Name</b></td>
@@ -76,7 +80,7 @@ if (!empty($_SESSION['user_id'])) {
 				</tr>
 				';
 
-				echo '</table>';
+				echo '</table></div>';
 
 
 			mysqli_free_result ($r);	

@@ -28,12 +28,12 @@ include ('includes/iheader.html');
 
 	<h2><p>Section 1 - Reading Hub</p></h2>
 	<h3><p>This section will provide you with informations regarding Cross-Site Scripting (XSS) Attack and some methods on how to prevent them.</p></h3>
-
-	<h2><p>Section 2 - Assessment Hub</p></h2>
-	<h3><p>This section will be used to test your understanding regarding this topic</p></h3>
 	
-	<h2><p>Section 3 - Testing Hub</p></h2>
+	<h2><p>Section 2 - Testing Hub</p></h2>
 	<h3><p>This section will allow you to play around with a dummy website for you to try and attack with and without the prevention system. Do you think you can made a successful attack ? </p></h3>
+
+	<h2><p>Section 3 - Assessment Hub</p></h2>
+	<h3><p>This section will be used to test your understanding regarding this topic</p></h3>
 
 	<br><br>
 	<h4>

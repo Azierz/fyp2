@@ -4,7 +4,6 @@ include ('includes/theader.html');
 require ('mysqli_connect.php');
 ?>
 
-
 <div class="flex-container">
     <h1>Kingdom Hearts Game Titles</h1>
     <p>Here are the list of Kingdom Hearts games that is available</p>
@@ -53,11 +52,12 @@ require ('mysqli_connect.php');
         <form action="collections.php" method="POST">
         <input type="hidden" name="gameid" value="-1">
 
-        <a href=\'javascript:formSubmit('.$row['collection_id'].');\'><div class="flex-container" style="width:15vh; height:25vh; justify-content:flex-start;">
-            <img src="includes/khcrown.jpg">
+        <a href=\'javascript:formSubmit('.$row['collection_id'].');\'>&nbsp;
+        <div class="flex-container" style="width:35vh; height:19vh; justify-content:center;">
+            <img src="'. $row['game_pic'] .'">
+        </div><div class="flex-container" style="width:35vh; height:11vh; justify-content:flex-start;">
             <p class="browsebold">'. $row['game_name'] .'&nbsp;</p>
-            </div>
-            <div class=flex-con>
+        </div><div class=flex-con>
             <p>See More ></p>
         </div></a>
         </form>
