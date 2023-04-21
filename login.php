@@ -68,8 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_SESSION['user_id'] = $row['user_id'];
 			$_SESSION['email'] = $e;
 			$_SESSION['profile_pic'] = $row['profile_pic'];
-			$_SESSION['fname'] = $row['first_name'];
-			$_SESSION['lname'] = $row['last_name'];
+			$_SESSION['name'] = $row['first_name'] . ' ' . $row['last_name'];
 
 			
 			// Redirect user

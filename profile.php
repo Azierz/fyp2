@@ -17,7 +17,7 @@ if (!empty($_SESSION['user_id'])) {
 		<div class="flex-con"><div class="flex-container">';
 
 		$user_id=$_SESSION['user_id'];
-		echo '<h1>WELCOME BACK, '. $_SESSION['fname'] .' '. $_SESSION['lname'] .' !</h1>';
+		echo '<h1>WELCOME BACK, '. $_SESSION['name'] .' !</h1>';
 		
 		$q = "SELECT *, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr FROM users WHERE user_id='$user_id' ORDER BY user_id";		
 		$r = @mysqli_query ($dbc, $q);
