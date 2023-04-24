@@ -4,6 +4,8 @@ include ('includes/theader.html');
 require ('mysqli_connect.php');
 ?>
 
+
+
 <div class="flex-container">
     <h1>Kingdom Hearts Game Titles</h1>
     <p>Here are the list of Kingdom Hearts games that is available</p>
@@ -77,11 +79,6 @@ require ('mysqli_connect.php');
 
     echo '</div></div>';
     ?>
-<script>
-    function formSubmit(gameid) {
-        document.forms[0].gameid.value = gameid;
-        document.forms[0].submit();
-    }
-</script>
+
 <?php include ('includes/footer.html'); ?>
 </div>

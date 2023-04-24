@@ -9,65 +9,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	$col_id = $_POST['gameid'];
 	$_SESSION['cur_id'] = $_POST['gameid'];
-	$clear = 0;
+	
 	if(isset($_SESSION['name'])){
 		$name = $_SESSION['name'];
 	} else {
 		$name = "Anonymous";
 	}
 
-if (!empty($_POST['current'])) {
-	$errors = array(); // Initialize error array.
+	if (!empty($_POST['current'])) {
+		$errors = array(); // Initialize error array.
 
-	// Validate the comments:
-	if (empty($_POST['comments'])) {
-		$errors[] = 'No comment(s)/review(s) has been inserted.';
-	} else {
-		$c = mysqli_real_escape_string($dbc, trim($_POST['comments']));
-	}
+		// Validate the comments:
+		if (empty($_POST['comments'])) {
+			$errors[] = 'No comment(s)/review(s) has been inserted.';
+		} else {
+			$c = mysqli_real_escape_string($dbc, trim($_POST['comments']));
+		}
 
-	if(empty($errors)) {
-		// $user_id=$_SESSION['user_id'];
-		
-		$q = "INSERT INTO reviews (col_id, timestamp, name, comments) VALUES ('$col_id', NOW(), '$name', '$c')";		
-		$r = @mysqli_query ($dbc, $q);
+		if(empty($errors)) {
+			// $user_id=$_SESSION['user_id'];
+			
+			$q = "INSERT INTO reviews (col_id, timestamp, name, comments) VALUES ('$col_id', NOW(), '$name', '$c')";		
+			$r = @mysqli_query ($dbc, $q);
 
-		if ($r) { // If it ran OK.
-			echo '
-				<script>
-				window.alert("\nYour review has been added!");
-				setTimeout(function(){location.href="collections"},0);
-				</script>';
-		} else { // If it did not run OK.
+			if ($r) { // If it ran OK.
+				echo '
+					<script>
+					window.alert("\nYour review has been added!");
+					setTimeout(function(){location.href="collections"},0);
+					</script>';
+			} else { // If it did not run OK.
+				echo '
+					<script>
+					window.alert("\nYour review could not be added!");
+					setTimeout(function(){location.href="collections"},0);
+					</script>';
+			}
+		} else { // Report the errors.
 			echo '
 				<script>
 				window.alert("\nYour review could not be added!");
 				setTimeout(function(){location.href="collections"},0);
 				</script>';
 		}
-	} else { // Report the errors.
-		echo '
-			<script>
-			window.alert("\nYour review could not be added!");
-			setTimeout(function(){location.href="collections"},0);
-			</script>';
-	}
 }}
 
 
 echo '
-	<div class="flex-con">
+<div class="flex-con">
 	<div class="flex-container" style="justify-content: flex-start;align-items: center;">';
-
-	// $user_id=$_SESSION['user_id'];
-	// echo '<h1>WELCOME BACK, '. $_SESSION['name'] .'!</h1>';
 	
 	if(!isset($_POST['gameid'])) {
-		$col_id = $_SESSION['cur_id'];
-		$clear = 1;
+		$col_id = $_SESSION['cur_id'];	
 	} else {
 		$col_id = $_POST['gameid'];
-		$clear = 0;
 	}
 	
 	$q = "SELECT * FROM collections WHERE collection_id='$col_id' ORDER BY collection_id";		
@@ -112,10 +107,11 @@ echo '
 				<td id = "table_td">' . $row['genre'] . '</td>
 			</tr>
 		</table>
-	</div><div class="flex-container">&emsp;</div><div class="flex-container">
+		</div><div class="flex-container">&emsp;</div><div class="flex-container">
 		<table align="center" cellspacing="10" cellpadding="10" width=60%>
 			<tr>
 				<td><b>Release Info</b></td>
+				<td><a href="browse"><input class="form-submit-button" style="width:auto; height:fit-content; margin-left:75%" type="submit" name="submit" value="Go Back >"></td>
 			</tr>
 			<tr>
 				<td><b>Version / Re-Release</b></td>
@@ -143,19 +139,18 @@ echo '
 			</tr>
 		';
 
-			
-		echo '<form action="collections.php" method="post">
-		<input type="hidden" name="gameid" value="'.$row['collection_id'].'">
-		<input type="hidden" name="current" value="1">
-		<tr>
-			<td colspan=2><textarea name="comments" rows="5" cols="90" placeholder=" Write a comment/review | Rate this game"></textarea></td>
-		</tr>
-		<tr>
-		<td></td>
-			<td><input class="form-submit-button" style="width:20%; height:fit-content; margin-left:80%" type="submit" name="submit" value="Submit"></td>
-		</tr>
-		</form> ';
-
+		echo '
+			<form action="collections.php" method="post">
+				<input type="hidden" name="gameid" value="'.$row['collection_id'].'">
+				<input type="hidden" name="current" value="1">
+				<tr>
+					<td colspan=2><textarea name="comments" rows="5" cols="90" placeholder=" Write a comment/review | Rate this game"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input class="form-submit-button" style="width:20%; height:fit-content; margin-left:80%" type="submit" name="submit" value="Submit"></td>
+				</tr>
+			</form> ';
 
 		$num1 = mysqli_num_rows($r1);
 
@@ -179,19 +174,22 @@ echo '
 		}
 
 		echo '
-		</table></div>';
+		</table>
+		</div>';
 
 		mysqli_free_result ($r);	
-		mysqli_free_result ($r1);
+		mysqli_free_result ($r1);		
 
-} else { // If no records were returned.
-	echo '<p class="error">There are currently no registered game on this website.</p>';
-}
-echo '</div>';
+	} else { // If no records were returned.
+		echo '
+		<p class="error">There are currently no registered game on this website.</p>
+		</div>
+		';
+	}
 
+	echo '</div>';
 
-
-mysqli_close($dbc); // Close the database connection.
+	mysqli_close($dbc); // Close the database connection.
 
 
 include ('includes/ifooter.html');

@@ -21,9 +21,13 @@ include ('includes/iheader.html');
         <h3>Click on the button below to get started.</h3>
         <!-- <h3>Test your knowledge by answering the questions in the Assessment Hub.</h3>
         <h3>Get a chance to be on the leaderboard by answering the questions correctly.</h3> -->
+
+        <h3><p>PLEASE NOTE: Once you press "Logout", you will be redirected back to this page. You may re-enter anytime you want.</p></h3>
         <p align="center"><a href="Home"><input class="form-submit-button" type="submit" name="submit" value="Get Started"/></a></p>
     </div>
 </div>
 
 
-<?php include ('includes/footer.html'); ?>
+
+<?php $_SESSION['toggle'] = 0;
+include ('includes/footer.html'); ?>

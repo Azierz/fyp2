@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <div id=starthere>
 <html>
 <head>
@@ -9,22 +9,11 @@
     <link rel='stylesheet' type='text/css' media='screen' href='includes/style.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+    <script src="includes/allfx.js"></script>
 
-        function takeSearch() {
-            var newsearch = $("#search").val();
-            $.ajax({
-                url: 'browse',
-                type: 'POST',
-                data: {value: newsearch },
-                success: function (result) {
-                    $("#starthere").replaceWith(result);
-                }
-            });
-        }
-    </script>
-
-
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    
 </head>
 <body id="bgT">
 <div id="trans">
@@ -32,28 +21,35 @@
         <a href="index"><b>AETUZI PVSY</b></a>
         <a href="help">Help</a>
 
-        <!-- search bar -->
+<!-- search bar -->
         <div class="search-container" style="float: left;">
-            <!-- <form action="browse" method="GET" role="search"> -->
-                <input type="text" placeholder="Search..." id="search" size="25">
-                <button type="button" onclick="takeSearch()" id="btnTake"><i class="fa fa-search"></i></button>
-            <!-- </form> -->
+            <input type="text" placeholder="Search..." id="search" size="25">
+            <button type="button" onclick="takeSearch()" id="btnTake"><i class="fa fa-search"></i></button>
         </div>
         
-        <div class="topnav-centered">
-            <button onclick="window.location.href='help';">TOGGLE PREVENTION: OFF</button>
-        </div>
-            
-
         <?php 
 
-        // Create a login/logout link:
-		
+//toggle prevention
+
+        if(isset($_POST["toggle"])){
+            $_SESSION["toggle"] = $_POST["toggle"];
+        }
+
+        if($_SESSION["toggle"] == 1){ echo '
+            <div class="topnav-centered">
+                <button id="toggleOn" onclick="toggleOff(); window.location.reload(true);">TOGGLE PREVENTION: ON</button>
+            </div> ';
+        } else { echo '
+            <div class="topnav-centered">
+                <button id="toggleOff" onclick="toggleOn(); window.location.reload(true);">TOGGLE PREVENTION: OFF</button>
+            </div> ';
+        } 
+
+//topnav
 
 		if (isset($_SESSION['admin_id'])) {
 			echo '
             <ul>
-                <!-- <li><img src="'.$_SESSION['profile_pic'].'" style="width: 50px; height: 50px;"></li> -->
                 <li><a href="Home">Home</a></li>
                 <li><a href="browse">Browse</a></li>
                 <li><a href="profile">Registered Participants</a></li>
@@ -64,7 +60,6 @@
 		} elseif (!empty($_SESSION['user_id'])) {
 			echo '
 			<ul>
-                <!-- <li><img src="'.$_SESSION['profile_pic'].'" style="width: 50px; height: 50px;"></li> -->
                 <li><a href="Home">Home</a></li>
                 <li><a href="browse">Browse</a></li>
                 <li><a href="profile">User Profile</a></li>
@@ -82,8 +77,6 @@
             </ul>';
 		}
         ?>
-        
-        
     </div> <!--Close div "topnav"-->
     
     <div id="content">
