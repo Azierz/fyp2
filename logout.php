@@ -9,5 +9,9 @@ setcookie ('PHPSESSID', '', time()-3600, '/', '', 0, 0); // Destroy the cookie.
 
 // Redirect user to home page
 // header("Location:index.php");
-echo '<script>setTimeout(function(){location.href="TestingHub"},0);</script>';
+if($_GET['destroy'] == 1) {
+    echo '<script>setTimeout(function(){location.href="index"},0);</script>';
+} else {
+    echo '<script>setTimeout(function(){location.href="TestingHub"},0);</script>';
+}
 ?>

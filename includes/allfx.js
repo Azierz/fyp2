@@ -53,3 +53,13 @@ function toggleOff() {
         dataType:'JSON',
       });
 }
+
+// destroy session in js
+function destroySession() {
+    $.ajax({
+        url: 'logout',
+        data: {destroy: "1"},
+        type: 'POST',
+        dataType:'JSON',
+    });
+}
