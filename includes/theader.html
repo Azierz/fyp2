@@ -1,82 +1,171 @@
 <?php session_start();?>
 <div id=starthere>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title><?php echo $page_title; ?></title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'> <!-- set the page dimensions and scalling -->
-    <link rel='stylesheet' type='text/css' media='screen' href='includes/style.css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="includes/allfx.js"></script>
+<?php if ($_SESSION["toggle"] == 1){ // SECURE CODES ?>
+    <html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title><?php echo $page_title; ?></title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'> <!-- set the page dimensions and scalling -->
+        <link rel='stylesheet' type='text/css' media='screen' href='includes/style.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="includes/allfx.js"></script>
 
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    
-</head>
-<body id="bgT">
-<div id="trans">
-    <div id="topnav">
-        <a href="index"><b>AETUZI PVSY</b></a>
-        <a href="help">Help</a>
-
-<!-- search bar -->
-        <div class="search-container" style="float: left;">
-            <input type="text" placeholder="Search..." id="search" size="25">
-            <button type="button" onclick="takeSearch()" id="btnTake"><i class="fa fa-search"></i></button>
-        </div>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         
-        <?php 
+    </head>
+    <body id="bgT">
+    <div id="trans">
+        <div id="topnav">
+            <a href="index"><b>AETUZI PVSY</b></a>
+            <a href="help">Help</a>
 
-//toggle prevention
+    <!-- search bar -->
+            <div class="search-container" style="float: left;">
+                <input type="text" placeholder="Search..." id="search" size="25">
+                <button type="button" onclick="takeSearch()" id="btnTake"><i class="fa fa-search"></i></button>
+            </div>
+            
+            <?php 
 
-        if(isset($_POST["toggle"])){
-            $_SESSION["toggle"] = $_POST["toggle"];
-        }
+    //toggle prevention
 
-        if($_SESSION["toggle"] == 1){ echo '
-            <div class="topnav-centered">
-                <button id="toggleOn" onclick="toggleOff(); window.location.reload(true);">TOGGLE PREVENTION: ON</button>
-            </div> ';
-        } else { echo '
-            <div class="topnav-centered">
-                <button id="toggleOff" onclick="toggleOn(); window.location.reload(true);">TOGGLE PREVENTION: OFF</button>
-            </div> ';
-        } 
+            if(isset($_POST["toggle"])){
+                $_SESSION["toggle"] = $_POST["toggle"];
+            }
 
-//topnav
+            if($_SESSION["toggle"] == 1){ echo '
+                <div class="topnav-centered">
+                    <button id="toggleOn" onclick="toggleOff(); window.location.reload(true);">TOGGLE PREVENTION: ON</button>
+                </div> ';
+            } else { echo '
+                <div class="topnav-centered">
+                    <button id="toggleOff" onclick="toggleOn(); window.location.reload(true);">TOGGLE PREVENTION: OFF</button>
+                </div> ';
+            } 
 
-		if (isset($_SESSION['admin_id'])) {
-			echo '
-            <ul>
-                <li><a href="Home">Home</a></li>
-                <li><a href="browse">Browse</a></li>
-                <li><a href="profile">Registered Participants</a></li>
-                <li><a href="logout">Logout</a></li>
-                <!-- <li><a href="register">Sign Up</a></li> -->
-            </ul>';
+    //topnav
 
-		} elseif (!empty($_SESSION['user_id'])) {
-			echo '
-			<ul>
-                <li><a href="Home">Home</a></li>
-                <li><a href="browse">Browse</a></li>
-                <li><a href="profile">User Profile</a></li>
-                <li><a href="logout">Logout</a></li>
-                <!-- <li><a href="register">Sign Up</a></li> -->
-            </ul>';
+            if (isset($_SESSION['admin_id'])) {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="profile">Registered Participants</a></li>
+                    <li><a href="logout">Logout</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
 
-		} else {
-			echo '
-			<ul>
-                <li><a href="Home">Home</a></li>
-                <li><a href="browse">Browse</a></li>
-                <li><a href="login">Login</a></li>
-                <!-- <li><a href="register">Sign Up</a></li> -->
-            </ul>';
-		}
-        ?>
-    </div> <!--Close div "topnav"-->
-    
-    <div id="content">
+            } elseif (!empty($_SESSION['user_id'])) {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="profile">User Profile</a></li>
+                    <li><a href="logout">Logout</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
+
+            } else {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="login">Login</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
+            }
+            ?>
+        </div> <!--Close div "topnav"-->
+        
+        <div id="content">
+
+
+
+
+            
+<?php } else { // INSECURE CODES [need to find vulnerable code for search] ?>
+    <html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title><?php echo $page_title; ?></title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'> <!-- set the page dimensions and scalling -->
+        <link rel='stylesheet' type='text/css' media='screen' href='includes/style.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- for icons -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- for jquery -->
+        <script src="includes/allfx.js"></script> <!-- for allfx -->
+    </head>
+    <body id="bgT">
+    <div id="trans">
+        <div id="topnav">
+            <a href="index"><b>AETUZI PVSY</b></a>
+            <a href="help">Help</a>
+
+    <!-- search bar -->
+            <!-- search bar -->
+			<div class="search-container">
+				
+					<input type="text" placeholder="Search OFF..." name="search" size="25" form="searchoff">
+					<button type="submit" form="searchoff"><i class="fa fa-search"></i></button>
+				
+		 	</div>
+            
+            <?php 
+
+    //toggle prevention
+
+            if(isset($_POST["toggle"])){
+                $_SESSION["toggle"] = $_POST["toggle"];
+            }
+
+            if($_SESSION["toggle"] == 1){ echo '
+                <div class="topnav-centered">
+                    <button id="toggleOn" onclick="toggleOff(); window.location.reload(true);">TOGGLE PREVENTION: ON</button>
+                </div> ';
+            } else { echo '
+                <div class="topnav-centered">
+                    <button id="toggleOff" onclick="toggleOn(); window.location.reload(true);">TOGGLE PREVENTION: OFF</button>
+                </div> ';
+            } 
+
+    //topnav
+
+            if (isset($_SESSION['admin_id'])) {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="profile">Registered Participants</a></li>
+                    <li><a href="logout">Logout</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
+
+            } elseif (!empty($_SESSION['user_id'])) {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="profile">User Profile</a></li>
+                    <li><a href="logout">Logout</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
+
+            } else {
+                echo '
+                <ul>
+                    <li><a href="Home">Home</a></li>
+                    <li><a href="browse">Browse</a></li>
+                    <li><a href="login">Login</a></li>
+                    <!-- <li><a href="register">Sign Up</a></li> -->
+                </ul>';
+            }
+            ?>
+        </div> <!--Close div "topnav"-->
+        
+        <div id="content">
+<?php } ?>
+
+

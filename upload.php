@@ -1,10 +1,9 @@
 <?php
 $page_title = 'Change Profile Photo';
-include ('includes/header.html');
+include ('includes/theader.html');
+require ('mysqli_connect.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-	require ('mysqli_connect.php');
 
 	$errors = array(); // Initialize error array.
 
@@ -14,7 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
+	if($_FILES['fileToUpload']['error'] > 0) {
+		$errors[] = 'No file has been selected.';
+		$uploadOk = 0;
+	} else {
+		
 		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 		if($check !== false) {
 			
@@ -57,39 +60,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$errors[] = "There was an error uploading your file.";
 		}
 	}
-
+	
 	if ($errors) {
-		echo '<h1>Error!</h1>
+		echo '<div class="flex-container">
+		<h1>Error!</h1>
 		<div id ="errors">The following error(s) occurred:<br />';
 		foreach ($errors as $msg) {
 			echo " - $msg<br/>";
 		}
 		echo '</div>
-		<div id = "errors">Please try again.</div>'; // Close div "errors"
+		<div id = "errors">Please try again.</div></div>'; // Close div "errors"
 
 	} elseif ($success == 1) {
 		
-		echo '<h1>Success!</h1>
+		echo '<div class="flex-container">
+		<h1>Success!</h1>
 		<div id ="success"><br/>';
 		echo "Your new profile picture has been uploaded.<br/>";
 		echo '</div><br>
 		<a href="profile"><button align="right">Back to User Profile</button></a>
-		<br><br><br>'; // Close div "success"
+		<br><br><br>
+		</div>'; // Close div "success"
 		exit();
 	}
 }
 ?>
-
-<h1>Change Profile Picture</h1>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-	<table style="font-size: 100%">
-		<tr>
-			<td><p style="size: 100%">Select image to upload</p></td>
-			<td><p><input type="file" name="fileToUpload" id="fileToUpload"></p></td>
-		</tr>
-	</table>
-	<p align="right"><input type="submit" value="Upload Image" name="submit"></p>
-</form>
+<div class="flex-con"><div class="flex-container">
+	<h1>Change Profile Picture</h1>
+	<form action="upload.php" method="POST" enctype="multipart/form-data" id="upl"></form>
+		<table style="font-size: 100%">
+			<tr>
+				<td colspan="2"><p>Choose a file to upload:</p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><p><input type="file" name="fileToUpload" id="fileToUpload" form="upl"></p></td>
+			</tr>
+			<tr><td>&emsp;</td></tr>
+			<tr>
+				<td><a href="profile"><input class="form-submit-button" style="width:auto; height:fit-content; font-size: 14px;" type="submit" name="others" value="< Go Back"></a></td>
+				<td><input form="upl" class="form-submit-button" style="width:auto; height:fit-content; font-size: 14px; margin-left:20%" type="submit" value="Upload Image" name="submit"></td>
+			</tr>
+		</table>
+</div></div>
 
 <?php
 include ('includes/footer.html');
