@@ -8,8 +8,12 @@ if ($_SESSION["toggle"] == 1){ // SECURE CODES
 	// Run after submit form
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
-		$col_id = $_POST['gameid'];
-		$_SESSION['cur_id'] = $_POST['gameid'];
+		if(isset($_POST['gameid'])){
+			$col_id = $_POST['gameid'];
+			$_SESSION['cur_id'] = $_POST['gameid'];
+		} else {
+			$col_id = $_SESSION['cur_id'];
+		}
 		
 		if(isset($_SESSION['name'])){
 			$name = $_SESSION['name'];
@@ -198,8 +202,12 @@ if ($_SESSION["toggle"] == 1){ // SECURE CODES
 	// Run after submit form
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
-		$col_id = $_POST['gameid'];
-		$_SESSION['cur_id'] = $_POST['gameid'];
+		if(isset($_POST['gameid'])){
+			$col_id = $_POST['gameid'];
+			$_SESSION['cur_id'] = $_POST['gameid'];
+		} else {
+			$col_id = $_SESSION['cur_id'];
+		}
 		
 		if(isset($_SESSION['name'])){
 			$name = $_SESSION['name'];

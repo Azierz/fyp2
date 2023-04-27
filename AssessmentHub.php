@@ -16,7 +16,7 @@ include ('includes/iheader.html');
 
 
     <p align="center"><a href="quizStart"><input class="form-submit-button" type="submit" value="Start the Assessment"/></a></p>
-    <p align="center"><a href="index"><input class="form-submit-button" type="submit" value="Leaderboard"/></a></p>
+    <p align="center"><a href="quizResults"><input class="form-submit-button" type="submit" value="Leaderboard"/></a></p>
 </div>
 
 

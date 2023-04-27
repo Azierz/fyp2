@@ -28,83 +28,81 @@ include ('includes/iheader.html');
             <h3>XSS works by exploiting a vulnerability in a web application that allows attackers to inject malicious code into web pages. This code is then executed by the victim's browser, potentially allowing the attacker to steal cookies, session tokens, or other sensitive information retained by the browser and used with that site. These scripts can even rewrite the content of the HTML page. There are three types of XSS:</h3>
 
             <h3><p>Stored XSS</p></h3>
-            <h3>In this type of attack, the malicious code is stored on the web server and executed when a user visits the page that contains it.</h3>
-
+            <h3>Stored XSS is the most common type and occurs when the malicious code is stored in a database or other data store.<br/><br/>For example, the malicious code is stored on the web server and executed when a user visits the page that contains it.</h3>
+            
             <h3><p>Reflected XSS</p></h3>
-            <h3>In this type of attack, the attacker sends a malicious URL to the victim. When the victim clicks the link, the malicious code is executed by the victim's browser and sent back to the web server. The server then sends the code back to the victim's browser to be executed.</h3>
+            <h3>Reflected XSS occurs when the malicious code is reflected off the server and executed in the victim's browser.<br/><br/>For example, the attacker sends a malicious URL to the victim. When the victim clicks the link, the malicious code is executed by the victim's browser and sent back to the web server. The server then sends the code back to the victim's browser to be executed.</h3>
 
             <h3><p>DOM-Based XSS</p></h3>
-            <h3>In this type of attack, the attacker exploits a vulnerability in the web application that allows them to inject malicious code that is executed by the victim's browser.</h3>
-    </div>
-    <div>
-        <h2><p>What kind of consequences that XSS have?</p></h2>
-    </div>
-    <div>
-            <h3>XSS can have serious consequences for web applications and their users. It can be used to steal sensitive information, manipulate web content, and redirect users to malicious websites. For example, an attacker could use XSS to steal a user's session cookie, allowing them to impersonate the user and access their account. They could also use XSS to redirect the user to a malicious website or display a fake login page to steal their credentials.</h3>
+            <h3>DOM-based XSS occurs when the malicious code is executed in the victim's browser without being sent to the server.<br/><br/>For example, the attacker exploits a vulnerability in the web application that allows them to inject malicious code that is executed by the victim's browser.</h3>           
     </div>
     <div>       
         <h2><p>How to prevent XSS?</p></h2>
     </div>
     <div>
-            <h3>One of the methods are by using XSS prevention technique. However, there are still other methods to prevent XSS:</h3>
-            
-                <h3><p>Validate all user input:</p></h3>
-                <h3>All user input should be validated to ensure that it is in the correct format and does not contain malicious code.</h3>
-                
-                <h3><p>Encode all output:</p></h3>
-                <h3>All output should be encoded to ensure that it is not interpreted as HTML or JavaScript.</h3>
-                
-                <h3><p>Use a whitelist:</p></h3>
-                <h3>A whitelist is a list of allowed characters that can be used in user input. All other characters should be removed or encoded.</h3>
-                
-                <h3><p>Use a blacklist:</p></h3>
-                <h3>A blacklist is a list of characters that should not be allowed in user input. All other characters should be allowed.</h3>
-                
-                <h3><p>Use a context-specific filter:</p></h3>
-                <h3>A context-specific filter is a filter that is specific to the type of data that is being validated. For example, a filter that checks for valid email addresses would be a context-specific filter.</h3>
-                
-                <h3><p>Use a generic filter:</p></h3>
-                <h3>A generic filter is a filter that is not specific to the type of data that is being validated. For example, a filter that checks for valid characters in a username would be a generic filter.</h3>
-                
-                <h3><p>Use a context-specific sanitizer:</p></h3>
-                <h3>A context-specific sanitizer is a sanitizer that is specific to the type of data that is being sanitized. For example, a sanitizer that removes HTML tags from a blog post would be a context-specific sanitizer.</h3>
-                
-                <h3><p>Use a generic sanitizer:</p></h3>
-                <h3>A generic sanitizer is a sanitizer that is not specific to the type of data that is being sanitized. For example, a sanitizer that removes all HTML tags would be a generic sanitizer.</h3>
+    
+        <h3>XSS can be prevented by sanitizing user input and escaping output. Sanitizing user input means removing any potentially malicious code from the data before it is stored in the database or displayed on a web page. Escaping output means converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h3>
 
+        <h3><p>Sanitizing User Input</p></h3>
+        <h3>Sanitizing user input means removing any potentially malicious code from the data before it is stored in the database or displayed on a web page. This can be done by using a whitelist of allowed characters and rejecting any input that contains characters not on the list. For example, if the application only allows alphanumeric characters, then any input that contains special characters such as <, >, or & will be rejected.</h3>
 
-                <!-- <h3><p>Use a framework:</p></h3>
-                <h3>Using a framework that has built-in XSS protection can help prevent XSS. For example, ASP.NET has built-in XSS protection that can be enabled by setting the ValidateRequest property to true.</h3>
+        <h3><p>Escaping Output</p></h3>
+        <h3>Escaping output means converting any potentially malicious code into harmless characters so that it cannot be executed by the browser. This can be done by replacing special characters with their HTML entity equivalents. For example, the < character can be replaced with &amplt; and the > character can be replaced with &ampgt;.</h3>
 
-                <h3><p>Use a library:</p></h3>
-                <h3>Using a library that has built-in XSS protection can help prevent XSS. For example, the OWASP Java Encoder library can be used to encode user input to prevent XSS.</h3>
+        <h3><p>Using Functions</p></h3>
+        <h3>Sanitizing user input and escaping output can be done manually, but it is easier to use functions that are built into the programming language or framework being used. <br/><br/>Majority of the functions can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser. However, some of them works differently. Below are some example of functions that can be used: </h3>
 
-                <h3><p>Use a tool:</p></h3>
-                <h3>Using a tool that has built-in XSS protection can help prevent XSS. For example, the OWASP Zed Attack Proxy (ZAP) can be used to find XSS vulnerabilities in web applications.</h3>
+            <h4><p>PHP Functions</p></h4>
+                <!-- <h4>PHP provides several functions for sanitizing user input and escaping output. These include htmlspecialchars(), htmlentities(), and strip_tags().</h4> -->
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">htmlspecialchars()</span> function converts special characters to HTML entities.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">htmlentities()</span> function converts all the applicable characters to HTML entities.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">strip_tags()</span> function removes HTML tags from a string. This can be used to prevent XSS by removing any potentially malicious code from the data before it is stored in the database or displayed on a web page.</h4>
 
-                <h3><p>Use a secure development process:</p></h3>
-                <h3>Using a secure development process can help prevent XSS. For example, the OWASP Secure Coding Practices Quick Reference Guide can be used to develop secure web applications.</h3>
+            <h4><p>JavaScript Functions</p></h4>
+                <!-- <h4>JavaScript provides several functions for sanitizing user input and escaping output. These include encodeURI(), encodeURIComponent(), and escape().</h4> -->
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">encodeURI() / encodeURIComponent()</span> function encodes a (URI / URI component) by replacing each instance of certain characters by one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">escape()</span> function encodes a string by replacing each instance of certain characters with one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
 
-                <h3><p>Use a secure configuration:</p></h3>
-                <h3>Using a secure configuration can help prevent XSS. For example, the OWASP Secure Configuration Guide can be used to configure web applications securely.</h3>
+            <h4><p>HTML5 Functions</p></h4>
+                <!-- <h4>HTML5 provides several functions for sanitizing user input and escaping output. These include innerHTML(), outerHTML(), and textContent().</h4> -->
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">innerHTML()</span> function sets or returns the HTML content (inner HTML) of an element.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">outerHTML()</span> function sets or returns the HTML content (outer HTML) of an element.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">textContent()</span> function sets or returns the text content of an element.</h4>
 
-                <h3><p>Use a secure hosting environment:</p></h3>
-                <h3>Using a secure hosting environment can help prevent XSS. For example, the OWASP Secure Hosting Guide can be used to host web applications securely.</h3>
+            <h4><p>jQuery Functions</p></h4>
+                <!-- <h4>jQuery provides several functions for sanitizing user input and escaping output. These include html(), text(), and val().</h4> -->                
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">html()</span> function sets or returns the HTML content of an element.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">text()</span> function sets or returns the text content of an element.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">val()</span> function sets or returns the value of an input field.</h4>
 
-                <h3><p>Use a secure network:</p></h3>
-                <h3>Using a secure network can help prevent XSS. For example, the OWASP Secure Network Guide can be used to secure the network that web applications are hosted on.</h3>
+            <h4><p>URL Functions</p></h4>
+                <!-- <h4>URLs can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4> -->
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">encodeURI() / encodeURIComponent()</span> function encodes a (URI / URI component) by replacing each instance of certain characters by one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">decodeURI() / decodeURIComponent()</span> function decodes a (URI / URI component) by replacing each instance of certain escape sequences representing the UTF-8 encoding of the character by the character itself.</h4>
 
-                <h3><p>Use a secure operating system:</p></h3>
-                <h3>Using a secure operating system can help prevent XSS. For example, the OWASP Secure Operating System Guide can be used to secure the operating system that web applications are hosted on.</h3>
-
-                <h3><p>Use a secure development environment:</p></h3>
-                <h3>Using a secure development environment can help prevent XSS. For example, the OWASP Secure Development Environment Guide can be used to develop web applications securely.</h3>
-
-                <h3><p>Use a secure code review process:</p></h3>
-                <h3>Using a secure code review process can help prevent XSS. For example, the OWASP Code Review Guide can be used to review web applications securely.</h3>
-
-                <h3><p>Use a secure build process:</p></h3>
-                <h3>Using a secure build process can help prevent XSS. For example, the OWASP Build Guide can be used to build web applications securely.</h3> -->
+            <h4><p>CSS Functions</p></h4>
+                <!-- <h4>CSS can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4> -->
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">escape()</span> function encodes a string by replacing each instance of certain characters by one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">unescape()</span> function decodes a string by replacing each instance of certain escape sequences representing the UTF-8 encoding of the character by the character itself.</h4>
     </div>
+    <div>
+        <h2><p>Conclusion</p></h2>
+    </div>
+    <div>
+        <h3>XSS attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user within the output it generates without validating or encoding it.</h3>
+        <h3>There are many ways to prevent XSS attacks. The most important thing is to be aware of the threat and to take steps to protect yourself.</h3>
+
+        <h3><p>References</p></h3>
+        <h3>https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</h3>
+        <h3>https://www.acunetix.com/websitesecurity/cross-site-scripting/</h3>
+        <h3>https://www.cloudflare.com/learning/security/threats/cross-site-scripting/</h3>
+        <h3>https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attack/</h3>
+        <h3>https://www.veracode.com/security/xss</h3>
+        <h3>https://www.netsparker.com/blog/web-security/cross-site-scripting-xss/</h3>
+        <h3>https://www.cloudflare.com/learning/security/threats/cross-site-scripting/</h3>
+    
+    </div>
+
+
 </div>
 <?php include ('includes/ifooter.html'); ?>
