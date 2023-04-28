@@ -1,4 +1,5 @@
 <?php
+$page_title = 'Leaderboard';
 include ('includes/header.html');
 require ('mysqli_connect.php');
 

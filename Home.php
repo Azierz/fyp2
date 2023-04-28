@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Testing Hub';
+$page_title = 'Welcome Keyblade Wielders!';
 include ('includes/theader.html');
 ?>
 

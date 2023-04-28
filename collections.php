@@ -1,5 +1,5 @@
 <?php 
-$page_title = 'Collections';
+$page_title = 'Collections: Game Details';
 include ('includes/theader.html');
 require ('mysqli_connect.php');
 

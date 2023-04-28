@@ -41,7 +41,7 @@ include ('includes/iheader.html');
     </div>
     <div>
     
-        <h3>XSS can be prevented by sanitizing user input and escaping output. Sanitizing user input means removing any potentially malicious code from the data before it is stored in the database or displayed on a web page. Escaping output means converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h3>
+        <!-- <h3>XSS can be prevented by sanitizing user input and escaping output. Sanitizing user input means removing any potentially malicious code from the data before it is stored in the database or displayed on a web page. Escaping output means converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h3> -->
 
         <h3><p>Sanitizing User Input</p></h3>
         <h3>Sanitizing user input means removing any potentially malicious code from the data before it is stored in the database or displayed on a web page. This can be done by using a whitelist of allowed characters and rejecting any input that contains characters not on the list. For example, if the application only allows alphanumeric characters, then any input that contains special characters such as <, >, or & will be rejected.</h3>
@@ -69,21 +69,21 @@ include ('includes/iheader.html');
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">outerHTML()</span> function sets or returns the HTML content (outer HTML) of an element.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">textContent()</span> function sets or returns the text content of an element.</h4>
 
-            <h4><p>jQuery Functions</p></h4>
-                <!-- <h4>jQuery provides several functions for sanitizing user input and escaping output. These include html(), text(), and val().</h4> -->                
+            <!-- <h4><p>jQuery Functions</p></h4>
+                <h4>jQuery provides several functions for sanitizing user input and escaping output. These include html(), text(), and val().</h4>                
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">html()</span> function sets or returns the HTML content of an element.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">text()</span> function sets or returns the text content of an element.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">val()</span> function sets or returns the value of an input field.</h4>
 
             <h4><p>URL Functions</p></h4>
-                <!-- <h4>URLs can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4> -->
+                <h4>URLs can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">encodeURI() / encodeURIComponent()</span> function encodes a (URI / URI component) by replacing each instance of certain characters by one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">decodeURI() / decodeURIComponent()</span> function decodes a (URI / URI component) by replacing each instance of certain escape sequences representing the UTF-8 encoding of the character by the character itself.</h4>
 
             <h4><p>CSS Functions</p></h4>
-                <!-- <h4>CSS can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4> -->
+                <h4>CSS can be used to prevent XSS by converting any potentially malicious code into harmless characters so that it cannot be executed by the browser.</h4>
                 <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">escape()</span> function encodes a string by replacing each instance of certain characters by one, two, or three escape sequences representing the UTF-8 encoding of the character.</h4>
-                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">unescape()</span> function decodes a string by replacing each instance of certain escape sequences representing the UTF-8 encoding of the character by the character itself.</h4>
+                <h4>The <span style="background-color: #e5ff0099; padding:0.2em;">unescape()</span> function decodes a string by replacing each instance of certain escape sequences representing the UTF-8 encoding of the character by the character itself.</h4> -->
     </div>
     <div>
         <h2><p>Conclusion</p></h2>
@@ -92,15 +92,13 @@ include ('includes/iheader.html');
         <h3>XSS attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user within the output it generates without validating or encoding it.</h3>
         <h3>There are many ways to prevent XSS attacks. The most important thing is to be aware of the threat and to take steps to protect yourself.</h3>
 
-        <h3><p>References</p></h3>
+        <!-- <h3><p>References</p></h3>
         <h3>https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</h3>
         <h3>https://www.acunetix.com/websitesecurity/cross-site-scripting/</h3>
         <h3>https://www.cloudflare.com/learning/security/threats/cross-site-scripting/</h3>
-        <h3>https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attack/</h3>
+        <h3>https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attacks/</h3>
         <h3>https://www.veracode.com/security/xss</h3>
-        <h3>https://www.netsparker.com/blog/web-security/cross-site-scripting-xss/</h3>
-        <h3>https://www.cloudflare.com/learning/security/threats/cross-site-scripting/</h3>
-    
+        <h3>https://www.netsparker.com/blog/web-security/cross-site-scripting-xss/</h3>     -->
     </div>
 
 

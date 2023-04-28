@@ -84,8 +84,7 @@ if ($_SESSION["toggle"] == 1){ // SECURE CODES
 						<h1>Thank you!</h1>
 						<p id="success">You are now registered.</p>
 						<br>
-						<a href="login"><button align="right">Go to Login Page</button></a>
-						<br><br><br>
+						<a href="login"><button class="form-submit-button">Go to Login Page</button></a>
 					</div>';	
 
 				} else { // If it did not run OK.

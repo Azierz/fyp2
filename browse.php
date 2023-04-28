@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Testing Hub';
+$page_title = 'Browse KH Games';
 include ('includes/theader.html');
 require ('mysqli_connect.php');
 ?>

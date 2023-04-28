@@ -7,7 +7,7 @@ include ('includes/header.html');
 <div style="text-align:center;" id="quizsection">
     <h1>Assessment Hub</h1>
 	
-	<p> Enter your name: <br> <input type="text" id="username"></p>
+	<p> Please enter your name before start the quiz: <br> <input type="text" id="username"></p>
 	<br/>
 	<button type="button" class="form-submit-button" onclick="takeQuiz()" id="btnTake">&nbsp;Take Quiz&nbsp;</button>
 	<br/>

@@ -75,11 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 		echo '<div class="flex-container">
 		<h1>Success!</h1>
-		<div id ="success"><br/>';
+		<div id ="success">';
 		echo "Your new profile picture has been uploaded.<br/>";
 		echo '</div><br>
-		<a href="profile"><button align="right">Back to User Profile</button></a>
-		<br><br><br>
+		<a href="profile"><button class="form-submit-button">Back to User Profile</button></a>
 		</div>'; // Close div "success"
 		exit();
 	}

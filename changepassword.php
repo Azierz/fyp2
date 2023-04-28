@@ -1,9 +1,7 @@
 <?php 
+$page_title = 'Change Password';
 include ('includes/theader.html');
 require ('mysqli_connect.php');
-
-$page_title = 'Change Password';
-
 
 // Run after submit form
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
