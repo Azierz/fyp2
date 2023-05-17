@@ -5,8 +5,9 @@ include ('includes/iheader.html');
 
 <div>
     <div style="text-align: center; width:100vh;">
-        <h1>Testing Hub</h1>
-        <h3>A platform to learn how does the mechanims of Cross-Site Scripting (XSS) works with and/or without prevention techniques applied.</h3>
+        <h1>TESTING HUB</h1>
+        
+        <h3>A platform to explore and try exploiting using Cross-Site Scripting (XSS) attack WITH or WITHOUT prevention techniques being applied.</h3>
         <br>
         
         <!-- <h3>Learn how to prevent XSS attacks by reading the articles in the Reading Hub.</h3>
