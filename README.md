@@ -1,1 +1,1 @@
-FINAL YEAR PROJECT - Cross-Site Scripting Prevention System (in progress)
+FINAL YEAR PROJECT - Cross-Site Scripting Learning Hub (Completed)
