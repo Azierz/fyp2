@@ -92,15 +92,30 @@ include ('includes/iheader.html');
         <h3>XSS attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user within the output it generates without validating or encoding it.</h3>
         <h3>There are many ways to prevent XSS attacks. The most important thing is to be aware of the threat and to take steps to protect yourself.</h3>
 
-        <!-- <h3><p>References</p></h3>
-        <h3>https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</h3>
-        <h3>https://www.acunetix.com/websitesecurity/cross-site-scripting/</h3>
-        <h3>https://www.cloudflare.com/learning/security/threats/cross-site-scripting/</h3>
-        <h3>https://www.imperva.com/learn/application-security/cross-site-scripting-xss-attacks/</h3>
-        <h3>https://www.veracode.com/security/xss</h3>
-        <h3>https://www.netsparker.com/blog/web-security/cross-site-scripting-xss/</h3>     -->
     </div>
-
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 </div>
 <?php include ('includes/ifooter.html'); ?>
+
+<script type="text/javascript">
+	//Get the button:
+	mybutton = document.getElementById("myBtn");
+
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	    mybutton.style.display = "block";
+	  } else {
+	    mybutton.style.display = "none";
+	  }
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+	  document.body.scrollTop = 0; // For Safari
+	  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+	}
+</script>
